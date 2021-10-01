@@ -15,4 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/',AuthorController::class);
-
+Route::get('test',function (){
+   return \App\Models\Author::with('book')->get();
+});

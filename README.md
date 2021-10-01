@@ -12,7 +12,7 @@
     php artisan ui vue --auth
 
     2x
-    npm install && npm run 
+    npm install && npm run dev
 
     ( one command create model , controller , seeder , migration )
         php artisan make:model Book --all 
