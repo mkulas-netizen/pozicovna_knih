@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,12 +30,11 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
 
         $validator = Validator::make($request->all(),[
             'title' => 'required|min:2|max:255|unique:books'
-
         ]);
 
         if ( $validator->fails() ) {
@@ -45,7 +45,8 @@ class BookController extends Controller
         }
 
         Book::create([
-           'title' => $request->title
+           'title' => $request->title,
+           'author_id' => $request->id
         ]);
 
         return redirect()->back()->with('flash_message', 'Book create!');
@@ -73,7 +74,24 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        return 'update';
+
+        if ($request->borrowed == 'return') {
+            $book->update([
+                'is_borrowed' => false
+            ]);
+
+            return redirect()->back();
+        }
+
+        if ($request->borrowed == 'borrowed'){
+            $book->update([
+               'is_borrowed' => true
+            ]);
+
+            return redirect()->back();
+
+        }
+
     }
 
 

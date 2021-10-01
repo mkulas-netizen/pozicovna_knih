@@ -5,7 +5,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add book</h5>
-
             </div>
             <div class="modal-body">
                 <form method="post" action="{{ route('book.store') }}">
@@ -23,12 +22,12 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <input type="hidden" name="id" value="{{ $id }}">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Create book</button>
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>

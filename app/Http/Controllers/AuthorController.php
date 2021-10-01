@@ -59,7 +59,7 @@ class AuthorController extends Controller
     public function show(Author $author)
     {
         $books = Book::where('author_id',$author->id)->paginate(5);
-        return view('pages.book', compact('books'));
+        return view('pages.book', compact('books'),['id' => $author->id ]);
     }
 
     /**

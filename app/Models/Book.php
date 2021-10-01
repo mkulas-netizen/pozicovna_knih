@@ -3,7 +3,6 @@
 namespace App\Models;
 
 
-use App\Models\CoreMethod\Application;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,6 +16,7 @@ class Book extends Model
 {
 
     use HasFactory;
+
 
     public static function boot()
     {
@@ -33,7 +33,7 @@ class Book extends Model
     protected $appends = ['authorFullName'];
 
 
-    protected array $fillable = ['title','is_borrowed'];
+    protected array $fillable = ['title','is_borrowed','author_id'];
 
 
     public function author(): BelongsTo
@@ -42,7 +42,8 @@ class Book extends Model
     }
 
 
-    public function getAuthorFullNameAttribute(){
+    public function getAuthorFullNameAttribute(): string
+    {
         return  $this->author->name .' '. $this->author->surname;
     }
 
