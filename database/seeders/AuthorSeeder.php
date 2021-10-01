@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Author;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class AuthorSeeder extends Seeder
@@ -17,15 +18,19 @@ class AuthorSeeder extends Seeder
         Author::insert([
             [
                'name' => 'Silas',
-               'surname' => 'Atkinson'
+               'surname' => 'Atkinson',
+                'created_at' => Carbon::now()
             ],
             [
                 'name' => 'Khadija',
                 'surname' => 'Atherton',
+                'created_at' => Carbon::now()
+
             ],
             [
                 'name' => 'Rosa',
-                'surname' => 'Connolly'
+                'surname' => 'Connolly',
+                'created_at' => Carbon::now()
             ]
         ]);
     }
