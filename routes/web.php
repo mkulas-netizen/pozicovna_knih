@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/',AuthorController::class);
-Route::get('test',function (){
-   return \App\Models\Author::with('book')->get();
-});
+Route::resource('author',AuthorController::class);
+Route::resource('book',  BookController::class);

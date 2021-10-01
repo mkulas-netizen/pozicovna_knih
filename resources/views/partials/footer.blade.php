@@ -1,2 +1,3 @@
+@stack('js')
 </body>
 </html>

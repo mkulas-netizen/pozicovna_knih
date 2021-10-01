@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @method static get()
+ * @method static create(array $array)
+ * @property mixed $id
  */
 class Author extends Model
 {
@@ -16,8 +18,8 @@ class Author extends Model
 
     protected array $fillable = ['name','surname'];
 
-    public function book(): HasMany
+    public function book()
     {
-        return $this->hasMany(Book::class,'author_id','id');
+        return $this->hasMany(Book::class);
     }
 }

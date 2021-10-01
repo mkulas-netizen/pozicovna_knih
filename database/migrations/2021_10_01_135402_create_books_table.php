@@ -15,10 +15,14 @@ class CreateBooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->integer('author_id');
+            $table->foreignId('author_id')->foreign('author_id')
+                ->references('id')
+                ->on('authors')
+                ->onDelete('cascade');
             $table->string('title',255);
             $table->boolean('is_borrowed')->comment('1 -> is borrowed , 0 - not borrowed');
             $table->timestamps();
+
         });
     }
 

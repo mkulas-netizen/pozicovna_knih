@@ -2,25 +2,29 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Author;
+use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+
 
 class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        $getAuthors =  Author::with('book')->get();
-
-        return view('pages.author',['authors' => $getAuthors]);
+        return view('pages.author',
+            [
+                'authors' => Author::with('book')->get()
+            ]
+        );
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -29,31 +33,37 @@ class AuthorController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+           'name' => 'required|string|max:255|min:2',
+           'surname' => 'required|string|max:255|min:2'
+        ]);
+
+        /**
+         * V tomto prípade ani vlastne v žiadnom inom nepoužívam pre insert $request->all()
+         */
+        Author::create([
+            'name' => $request->name,
+            'surname' => $request->surname
+        ]);
+
+        return redirect()->back()->with('flash_message', 'Author create!');
+
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Author  $author
-     * @return \Illuminate\Http\Response
      */
     public function show(Author $author)
     {
-        //
+        $books = Book::where('author_id',$author->id)->paginate(5);
+        return view('pages.book', compact('books'));
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Author  $author
-     * @return \Illuminate\Http\Response
      */
     public function edit(Author $author)
     {
@@ -62,10 +72,6 @@ class AuthorController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Author  $author
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Author $author)
     {
@@ -74,9 +80,6 @@ class AuthorController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Author  $author
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Author $author)
     {
