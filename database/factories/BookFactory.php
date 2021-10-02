@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +23,9 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->unique()->sentence(3),
+            'is_borrowed' =>  $this->faker->boolean(5),
+            'author_id' => Author::inRandomOrder()->first()->id
         ];
     }
 }

@@ -1,7 +1,7 @@
 @extends('welcome')
 @section('content')
     <div class="container-fluid">
-        <div class="container h-100">
+        <div class="container h-100 pb-5">
             <!-- PAGE TITLE -->
             <h2 class="text-center pt-4 text-muted">Books authors</h2>
             <div class="row mt-5">
@@ -43,7 +43,7 @@
                                     <ul>
                                         @if(count($author->book) > 0)
                                             @foreach($author->book->take(1) as $book)
-                                                <li><a><i class="fas fa-home"></i>Example: {{ $book->title }}</a></li>
+                                                <li><a><i class="fas fa-home"></i>Example: {{ Str::limit($book->title,25) }}</a></li>
                                             @endforeach
                                             <li>
                                                 <a><i class="fas fa-flag"></i>
@@ -95,9 +95,13 @@
                     </div>
                 </div> <!-- end authors card -->
             </div> <!-- end row -->
+            <div class="d-flex justify-content-center">
+                {!! $authors->links('pagination::bootstrap-4') !!}
+            </div>
         </div> <!-- end container -->
     </div> <!-- end container-fluid -->
     @include('standard.components.create_author_modal')
+    <!-- paginate links -->
 
     <script>
         $(document).ready(function (){

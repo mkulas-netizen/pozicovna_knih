@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create new author</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{ __('data.create_author') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,7 +13,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="name" class="form-label mr-4">Name:</label>
+                        <label for="name" class="form-label mr-4">{{ __('data.name') }}:</label>
                         <input type="text" name="name" id="name" class="@error('name') is-invalid @enderror"
                                required>
                         @error('name')
@@ -23,7 +23,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="surname" class="form-label mr-1">Surname:</label>
+                        <label for="surname" class="form-label mr-1">{{ __('data.surname') }}:</label>
                         <input type="text" name="surname" id="surname"
                                class="@error('surname') is-invalid @enderror" required>
 
@@ -35,8 +35,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Add author</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('data.close') }}</button>
+                    <button type="submit" class="btn btn-success">{{ __('data.add_author') }}</button>
                 </div>
             </form>
         </div>

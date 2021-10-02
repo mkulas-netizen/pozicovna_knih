@@ -19,7 +19,7 @@ class AuthorController extends Controller
     {
         return view('standard.pages.author',
             [
-                'authors' => Author::with('book')->get()
+                'authors' => Author::with('book')->paginate(5)->onEachSide(5)
             ]
         );
     }

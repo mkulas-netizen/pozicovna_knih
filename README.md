@@ -61,7 +61,8 @@ Aplikácia prenájom kníh
         FronEnd ->  Štandard => [
                         Scss , Bootstrap4 
                         Paginácia v bootstrap štýle ( AppServiceProvider ) ,
-                        Preposielanie dát pre include 
+                        Preposielanie dát pre include ,
+                        Limit paginacnych buttonov pre moilnu verziu
                     ]
                     
                     Vue => [

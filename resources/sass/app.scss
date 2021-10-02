@@ -137,3 +137,15 @@
 .btn-success{
     background: forestgreen;
 }
+
+@media screen and ( max-width: 760px ) {
+    li.page-item {
+        display: none;
+    }
+
+    .page-item:first-child,
+    .page-item:last-child,
+    .page-item.active {
+        display: block;
+    }
+}

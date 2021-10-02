@@ -5,11 +5,13 @@
             <name>{{ $author->name }}</name>
             <surname>{{ $author->surname }}</surname>
             <fullname>{{ $author->authorFullName }}</fullname>
-            <lastmod>{{ $author->created_at->tz('UTC')->toAtomString() }}</lastmod>
-            @foreach($author->book as $book)
-                <title>{{ $book->title }}</title>
-                <borrowed>{{ $book->is_borrowed }}</borrowed>
-            @endforeach
+            <created_at>{{ $author->created_at->tz('UTC')->toAtomString() }}</created_at>
+            <books>
+                @foreach($author->book as $book)
+                    <title>{{ $book->title }}</title>
+                    <borrowed>{{ $book->is_borrowed }}</borrowed>
+                @endforeach
+            </books>
         </Author>
     @endforeach
 </Authors>

@@ -15,23 +15,27 @@ class AuthorSeeder extends Seeder
      */
     public function run()
     {
-        Author::insert([
-            [
-               'name' => 'Silas',
-               'surname' => 'Atkinson',
-                'created_at' => Carbon::now()
-            ],
-            [
-                'name' => 'Khadija',
-                'surname' => 'Atherton',
-                'created_at' => Carbon::now()
+        Author::factory()->count(10)->create();
 
-            ],
-            [
-                'name' => 'Rosa',
-                'surname' => 'Connolly',
-                'created_at' => Carbon::now()
-            ]
-        ]);
+/**
+ * insert([
+[
+'name' => 'Silas',
+'surname' => 'Atkinson',
+'created_at' => Carbon::now()
+],
+[
+'name' => 'Khadija',
+'surname' => 'Atherton',
+'created_at' => Carbon::now()
+
+],
+[
+'name' => 'Rosa',
+'surname' => 'Connolly',
+'created_at' => Carbon::now()
+]
+]
+ */
     }
 }

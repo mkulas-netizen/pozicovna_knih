@@ -5,6 +5,7 @@
             <!-- page title -->
             <h2 class="text-muted text-center">Author Books</h2>
             <a href="{{ route('author.index') }}" class="btn btm-sm btn-secondary"><- Back</a>
+
             <div class="row">
                 <!-- all books card -->
                 @if(count($books) > 0)
@@ -15,16 +16,17 @@
                                     <div
                                         class="stuha @is_borrowed( $book->is_borrowed ) bg-dark-red @else  bg-black @endif">
                                         <small>
-                                            {{ $book->title }} @is_borrowed( $book->is_borrowed ) - - Borrowed @endif
+                                            {{ Str::limit($book->title,25) }} @is_borrowed( $book->is_borrowed ) - -
+                                            Borrowed @endif
                                         </small>
                                     </div>
-                                    <h5 id="js-card-title"  class=" card-title w-130px">{{ $book->title }}</h5>
+                                    <h5 id="js-card-title" class=" card-title w-130px">{{ $book->title }}</h5>
                                     <p class="card-text"> {{ $book->authorFullName }}</p>
                                     <div class="position-absolute p-3 mb-5 w-75 fixed-bottom">
                                         @is_borrowed($book->is_borrowed)
                                         @include('standard.components.borrowed_form_edit_status',['book' => $book,'btn_name' => 'Give back','value' => 'return'])
-                                    @else
-                                        @include('standard.components.borrowed_form_edit_status',['book' => $book,'btn_name' => 'Borrow','value' => 'borrowed'])
+                                        @else
+                                            @include('standard.components.borrowed_form_edit_status',['book' => $book,'btn_name' => 'Borrow','value' => 'borrowed'])
                                         @endif
                                     </div>
                                     <div class="position-absolute d-flex fixed-bottom p-3 mt-2">
@@ -45,17 +47,18 @@
                 @endif
             <!-- add books card -->
                 @isset($author)
-                <div class="my_card col-md-6 col-lg-4 mt-5 pb-5">
-                    <div class="card m-auto  shadow-lg" style="width: 15rem;">
-                        <div class="card-body">
-                            <h5 class="card-title w-130px">Add new book</h5>
-                            <p class="card-text"></p>
-                            <div class="position-absolute fixed-bottom p-3">
-                                <a href="#" class="btn btn-success w-100" data-toggle="modal" data-target="#bookCreate">Add new book</a>
+                    <div class="my_card col-md-6 col-lg-4 mt-5 pb-5">
+                        <div class="card m-auto  shadow-lg" style="width: 15rem;">
+                            <div class="card-body">
+                                <h5 class="card-title w-130px">Add new book</h5>
+                                <p class="card-text"></p>
+                                <div class="position-absolute fixed-bottom p-3">
+                                    <a href="#" class="btn btn-success w-100" data-toggle="modal"
+                                       data-target="#bookCreate">Add new book</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endif
             </div> <!-- row -->
         </div> <!-- container -->
@@ -65,7 +68,7 @@
 
     <!-- paginate links -->
     <div class="d-flex justify-content-center">
-        {!! $books->links('pagination::bootstrap-4') !!}
+        {!! $books->links('pagination::bootstrap-4',['limit::',5]) !!}
     </div>
 
 @endsection

@@ -1,7 +1,5 @@
 @extends('welcome')
 @section('content')
-
-
     <div class="container-fluid">
         <div class="container h-100">
             <div class="row mt-5 d-flex  justify-content-center align-items-center h-100">
