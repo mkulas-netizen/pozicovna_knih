@@ -11,6 +11,6 @@
     <div class="col-4 text-center">
         <a href="{{ url('publicXml') }}" class="btn btn-sm btn-outline-dark">{{ __('data.export_data_xml_public') }}</a>
     </div>
-    <div class="col-12 mt-5">
-        <h4>{{ __('data.artisan') }}</h4>
-    </div>
+{{--    <div class="col-12 mt-5">--}}
+{{--        <h4>{{ __('data.artisan') }}</h4>--}}
+{{--    </div>--}}

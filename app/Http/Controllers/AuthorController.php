@@ -17,9 +17,12 @@ class AuthorController extends Controller
      */
     public function index(): View
     {
+        $book = Book::all();
         return view('standard.pages.author',
             [
-                'authors' => Author::with('book')->paginate(5)->onEachSide(5)
+                'authors' => Author::with('book')->paginate(5)->onEachSide(5),
+                'books' =>  $book->count(),
+                'book_count' => $book->where('is_borrowed',1)->count()
             ]
         );
     }

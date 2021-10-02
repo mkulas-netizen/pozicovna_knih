@@ -8,7 +8,7 @@
             @if(count($authors) > 0)
                 <!-- BUTTON ALL BOOKS -->
                     @include('standard.components.other_function')
-                    <div class="col-12">
+                    <div class="col-12 mt-4">
                         <a href="{{ url( '/')}}" class="btn btn-active text-center btn-outline-dark">
                             {{ __('data.home') }}
                         </a>
@@ -47,7 +47,7 @@
                                             @endforeach
                                             <li>
                                                 <a><i class="fas fa-flag"></i>
-                                                    {{ __('data.we_rigister') }} {{ count($author->book) }} {{ __('data.books') }} .
+                                                    {{ __('data.we_register') }} {{ count($author->book) }} {{ __('data.books') }} .
                                                 </a>
                                             </li>
                                             <li>
@@ -87,26 +87,21 @@
                         </div>
                         <div class="profile-details">
                             <ul>
-                                <li><a><i class="fas fa-flag"></i>...</a></li>
-                                <li><a><i class="fas fa-flag"></i>...</a></li>
+                                <li><a><i class="fas fa-flag"></i>{{  __('data.we_register') . ' ' .$books . ' '.  __('data.books') }}</a></li>
+                                <li><a><i class="fas fa-flag"></i>{{  __('data.borrowed') . ' ' . $book_count . ' ' . __('data.books') }}</a></li>
                                 <li><a><i class="fas fa-flag"></i>...</a></li>
                             </ul>
                         </div>
                     </div>
                 </div> <!-- end authors card -->
             </div> <!-- end row -->
+            <!-- paginate links -->
             <div class="d-flex justify-content-center">
                 {!! $authors->links('pagination::bootstrap-4') !!}
             </div>
         </div> <!-- end container -->
     </div> <!-- end container-fluid -->
     @include('standard.components.create_author_modal')
-    <!-- paginate links -->
 
-    <script>
-        $(document).ready(function (){
 
-        });
-
-    </script>
 @endsection
