@@ -7,7 +7,11 @@
             <div class="row mt-5">
             @if(count($authors) > 0)
                 <!-- BUTTON ALL BOOKS -->
+                    @include('standard.components.other_function')
                     <div class="col-12">
+                        <a href="{{ url( '/')}}" class="btn btn-active text-center btn-outline-dark">
+                            Home
+                        </a>
                         <a href="{{ route( 'book.index')}}" class="btn btn-active text-center btn-outline-dark">
                             All books
                         </a>

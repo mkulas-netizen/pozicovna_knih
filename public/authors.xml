@@ -1,13 +1,13 @@
 <?xml version="2.0"?>
 <Author>
+ <id>1</id>
+ <name>Silas</name>
+</Author>
+<Author>
+ <id>2</id>
+ <name>Khadija</name>
+</Author>
+<Author>
  <id>3</id>
  <name>Rosa</name>
-</Author>
-<Author>
- <id>4</id>
- <name>News</name>
-</Author>
-<Author>
- <id>5</id>
- <name>sad</name>
 </Author>
