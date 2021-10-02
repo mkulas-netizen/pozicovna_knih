@@ -15,14 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/',function (){
+   return view('pages.home');
+});
+
 Route::resource('author',AuthorController::class)
-    ->except(
-        [ 'edit' , 'create' , 'update' ]
-    );
+    ->except([ 'edit' , 'create' , 'update' ]);
 
 
 Route::resource('book',  BookController::class)
-    ->except(
-        [ 'edit' , 'create' ]
-    );
+    ->except([ 'edit' , 'create' ]);
 

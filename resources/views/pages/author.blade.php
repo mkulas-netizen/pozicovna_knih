@@ -48,7 +48,6 @@
                                                     Borrowed : {{ $author->book->where('is_borrowed',true)->count() }} books .
                                                 </a>
                                             </li>
-
                                         @else
                                             <li><a><i class="fas fa-home"></i></a></li>
                                             <li><a><i class="fas fa-home"></i></a></li>
@@ -63,6 +62,7 @@
                 @else
                     <div class="col-12 text-center">
                         <h2>Not exist authors</h2>
+                        <a href="{{ url('api/seed') }}" class="btn btn-danger">Create seed test data</a>
                     </div>
             @endif
             <!-- add new authors card -->

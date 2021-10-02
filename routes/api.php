@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::get('seed',[\App\Http\Controllers\HomeController::class,'seed']);
+Route::get('migrate',[\App\Http\Controllers\HomeController::class,'migrate']);
