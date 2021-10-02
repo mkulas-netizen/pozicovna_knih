@@ -22,9 +22,9 @@
                                     <p class="card-text"> {{ $book->authorFullName }}</p>
                                     <div class="position-absolute p-3 mb-5 w-75 fixed-bottom">
                                         @is_borrowed($book->is_borrowed)
-                                        @include('components.borrowed_form_edit_status',['book' => $book,'btn_name' => 'Give back','value' => 'return'])
+                                        @include('standard.components.borrowed_form_edit_status',['book' => $book,'btn_name' => 'Give back','value' => 'return'])
                                     @else
-                                        @include('components.borrowed_form_edit_status',['book' => $book,'btn_name' => 'Borrow','value' => 'borrowed'])
+                                        @include('standard.components.borrowed_form_edit_status',['book' => $book,'btn_name' => 'Borrow','value' => 'borrowed'])
                                         @endif
                                     </div>
                                     <div class="position-absolute d-flex fixed-bottom p-3 mt-2">
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                        @include('components.delete_book_modal',$book)
+                        @include('standard.components.delete_book_modal',$book)
                     @endforeach
                 @else
                     <div class="col-12">
@@ -61,19 +61,11 @@
         </div> <!-- container -->
     </div> <!-- container fluid -->
 
-    @include('components.add_book_modal',['author' => isset($author) ? $author : ''])
+    @include('standard.components.add_book_modal',['author' => isset($author) ? $author : ''])
 
     <!-- paginate links -->
     <div class="d-flex justify-content-center">
         {!! $books->links('pagination::bootstrap-4') !!}
     </div>
 
-    <script>
-        $('.js-edit').click(function (){
-            $('.card').each(function() {
-                var card = $('#js-card-title').text();
-                console.log(card)
-            });
-        });
-    </script>
 @endsection

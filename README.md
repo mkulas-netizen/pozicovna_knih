@@ -1,23 +1,63 @@
+Aplikácia prenájom kníh
 
-1.) Start Laravel8
+        Evidencia autorov a ich kníh 
+        Evidencia prenajatých kníh
+        Zobrazenie -> Autorov 
+                        [ 
+                            meno a priezvisko ,
+                            počet celkových kníh 
+                            počet prenajatých kníh
+                        ];
+                   -> Knihy 
+                        [
+                            Všetky knihy , 
+                            Knihy daného autora,
+                        ]
 
-2.) Create DB and connect DB
+        Funkcie -> [
+                        Migrácie => [ 
+                                      cudzí kľúč , 
+                                      cascade delete 
+                                    ] 
 
-3.) Add fronend VUE
+                        Seeder , 
 
+                        Vlastné atribúty v modeli ,
 
+                        Automatická akcia pri inserte autora v modeli ,
+                        Vlastná kontrola pre blade v AppServiceProvider [
+                            kontroluje prenájom knihy ],
 
-    composer require laravel/ui
+                        Button na automatický seed ( 
+                            akcia artisan commandu z fronendu
+                        ),
 
-    php artisan ui vue --auth
+                        Kontrola existencie tabuliek (
+                            Vhodné pre aplikácie kde je potrebný záznam 
+                            z db už pri bootovaní aplikácie . 
+                        ),
+                        
+                        CRUD akcie ,
 
-    2x
-    npm install && npm run dev
+                        Vlastný command,
+                        
+                        MultiLang
+                        
+                        Api verzia 1.0 ( v samostatnom controlleri ) 
+                        Api verzia 2.0 ( v samostantom controlleri ) 
+                        
+                        Vlastný route file,
+                        Controla existencie záznamov
+                    ],
 
-    ( one command create model , controller , seeder , migration )
-        php artisan make:model Book --all 
-        php artisan make:model Author --all
-
-    php artisan migrate 
-
+                             
+        FronEnd ->  Štandard => [
+                        Scss , Bootstrap4 
+                        Paginácia v bootstrap štýle ( AppServiceProvider ) ,
+                        Preposielanie dát pre include 
+                    ]
+                    
+                    Vue => [
+                            
+                            ]
     

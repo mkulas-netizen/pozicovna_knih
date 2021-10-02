@@ -33,14 +33,15 @@ class Book extends Model
 
     protected $appends = ['authorFullName'];
 
-
     protected array $fillable = ['title','is_borrowed','author_id'];
+
 
 
     public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class);
     }
+
 
 
     public function getAuthorFullNameAttribute(): string

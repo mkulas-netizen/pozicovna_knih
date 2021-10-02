@@ -17,7 +17,7 @@ class AuthorController extends Controller
      */
     public function index(): View
     {
-        return view('pages.author',
+        return view('standard.pages.author',
             [
                 'authors' => Author::with('book')->get()
             ]
@@ -60,7 +60,7 @@ class AuthorController extends Controller
     public function show(Author $author)
     {
         $books = Book::where('author_id',$author->id)->paginate(5);
-        return view('pages.book', compact('books'),['author' => $author->id ]);
+        return view('standard.pages.book', compact('books'),['author' => $author->id ]);
     }
 
     /**

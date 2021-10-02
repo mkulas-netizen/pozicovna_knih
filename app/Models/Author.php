@@ -17,11 +17,15 @@ class Author extends Model
     use HasFactory;
 
     protected array $fillable = ['name','surname'];
-
+    protected $appends = ['authorFullName'];
     public function book()
     {
         return $this->hasMany(Book::class);
     }
 
+    public function getAuthorFullNameAttribute(): string
+    {
+        return  $this->name .' '. $this->surname;
+    }
 
 }

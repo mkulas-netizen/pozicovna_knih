@@ -15,7 +15,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::paginate(6);
-        return view('pages.book', compact('books'));
+        return view('standard.pages.book', compact('books'));
     }
 
 

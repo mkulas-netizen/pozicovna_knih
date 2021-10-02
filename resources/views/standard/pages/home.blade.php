@@ -30,6 +30,6 @@
             </div>
         </div>
     </div>
-    <a href="{{ url('api/migrate') }}">Migration</a>
+    <a href="{{ url('migrate') }}">Migration</a>
 @endsection
 
