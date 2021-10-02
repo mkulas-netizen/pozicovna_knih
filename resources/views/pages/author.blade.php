@@ -15,8 +15,14 @@
                     </div>
                     <!-- All authors card -->
                     @foreach($authors as $author)
-                        <div class="col-md-4 ">
+                        <div class="col-md-4">
+
                             <div class="div-box">
+                                <form method="post" action="{{ route('author.destroy',$author) }}">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="position-absolute btn btn-sm btn-danger m-2">X</button>
+                                </form>
                                 <div class="user-img">
                                     <img src="{{ asset('img/avatar.png') }}" class="img-fluid" alt="avatar" width="">
                                 </div>
@@ -29,10 +35,20 @@
                                 <div class="profile-details">
                                     <ul>
                                         @if(count($author->book) > 0)
-                                            @foreach($author->book->take(2) as $book)
-                                                <li><a><i class="fas fa-home"></i>{{ $book->title }}</a></li>
+                                            @foreach($author->book->take(1) as $book)
+                                                <li><a><i class="fas fa-home"></i>Example: {{ $book->title }}</a></li>
                                             @endforeach
-                                            <li><a><i class="fas fa-flag"></i>And others ... </a></li>
+                                            <li>
+                                                <a><i class="fas fa-flag"></i>
+                                                    We register {{ count($author->book) }} books .
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a><i class="fas fa-flag"></i>
+                                                    Borrowed : {{ $author->book->where('is_borrowed',true)->count() }} books .
+                                                </a>
+                                            </li>
+
                                         @else
                                             <li><a><i class="fas fa-home"></i></a></li>
                                             <li><a><i class="fas fa-home"></i></a></li>

@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="id" value="{{ $id }}">
+                        <input type="hidden" name="author" value="{{ $author }}">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Create book</button>
                     </div>

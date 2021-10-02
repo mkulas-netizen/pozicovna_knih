@@ -15,5 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('author',AuthorController::class);
-Route::resource('book',  BookController::class);
+Route::resource('author',AuthorController::class)
+    ->except(
+        [ 'edit' , 'create' , 'update' ]
+    );
+
+
+Route::resource('book',  BookController::class)
+    ->except(
+        [ 'edit' , 'create' ]
+    );
+

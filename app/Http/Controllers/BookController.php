@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -13,19 +12,12 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $books = Book::paginate(5);
+        $books = Book::paginate(6);
         return view('pages.book', compact('books'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -46,33 +38,19 @@ class BookController extends Controller
 
         Book::create([
            'title' => $request->title,
-           'author_id' => $request->id
+           'author_id' => $request->author
         ]);
 
         return redirect()->back()->with('flash_message', 'Book create!');
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Book $book)
-    {
 
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Book $book)
-    {
-        return  'edit';
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, Book $book): RedirectResponse
     {
 
         if ($request->borrowed == 'return') {
@@ -83,21 +61,48 @@ class BookController extends Controller
             return redirect()->back();
         }
 
+
         if ($request->borrowed == 'borrowed'){
             $book->update([
                'is_borrowed' => true
             ]);
 
             return redirect()->back();
+        }
+
+
+        if ($request->title){
+
+            $validator = Validator::make($request->all(),[
+                'title' => 'required|min:2|max:255|unique:books'
+            ]);
+
+            if ( $validator->fails() ) {
+                return back()
+                    ->with('flash_error','Ups error !')
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $book->update([
+               'title' => $request->title
+            ]);
 
         }
+
+        return redirect()->back()->with('flash_message', 'Book update!');
 
     }
 
 
+    /**
+     * @param Book $book
+     * @return RedirectResponse
+     */
     public function destroy(Book $book): RedirectResponse
     {
         $book->delete();
         return redirect()->back()->with('flash_message', 'Book deleted!');
     }
+
 }

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @method static where(string $string, mixed $id)
  * @method static paginate(int $int)
+ * @method static create(array $array)
  * @property mixed $author
  */
 class Book extends Model

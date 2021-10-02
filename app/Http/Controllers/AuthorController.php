@@ -7,6 +7,7 @@ use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 
 class AuthorController extends Controller
@@ -59,7 +60,7 @@ class AuthorController extends Controller
     public function show(Author $author)
     {
         $books = Book::where('author_id',$author->id)->paginate(5);
-        return view('pages.book', compact('books'),['id' => $author->id ]);
+        return view('pages.book', compact('books'),['author' => $author->id ]);
     }
 
     /**
@@ -81,8 +82,9 @@ class AuthorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Author $author)
+    public function destroy(Author $author): RedirectResponse
     {
-        //
+        $author->delete();
+        return redirect()->back()->with('flash_message', 'Author deleted!');
     }
 }

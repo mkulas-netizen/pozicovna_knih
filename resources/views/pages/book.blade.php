@@ -4,20 +4,21 @@
         <div class="container mt-5">
             <!-- page title -->
             <h2 class="text-muted text-center">Author Books</h2>
+            <a href="{{ route('author.index') }}" class="btn btm-sm btn-secondary"><- Back</a>
             <div class="row">
                 <!-- all books card -->
                 @if(count($books) > 0)
                     @foreach($books as $book)
                         <div class="col-md-6 col-lg-4 mt-5 pb-5">
                             <div class="card m-auto  shadow-lg" style="width: 15rem;">
-                                <div class="card-body">
+                                <div id="js-body" class="card-body">
                                     <div
                                         class="stuha @is_borrowed( $book->is_borrowed ) bg-dark-red @else  bg-black @endif">
                                         <small>
                                             {{ $book->title }} @is_borrowed( $book->is_borrowed ) - - Borrowed @endif
                                         </small>
                                     </div>
-                                    <h5 class="card-title js-card-title w-130px">{{ $book->title }}</h5>
+                                    <h5 id="js-card-title"  class=" card-title w-130px">{{ $book->title }}</h5>
                                     <p class="card-text"> {{ $book->authorFullName }}</p>
                                     <div class="position-absolute p-3 mb-5 w-75 fixed-bottom">
                                         @is_borrowed($book->is_borrowed)
@@ -43,6 +44,7 @@
                     </div>
                 @endif
             <!-- add books card -->
+                @isset($author)
                 <div class="col-md-6 col-lg-4 mt-5 pb-5">
                     <div class="card m-auto  shadow-lg" style="width: 15rem;">
                         <div class="card-body">
@@ -54,12 +56,12 @@
                         </div>
                     </div>
                 </div>
-
+                @endif
             </div> <!-- row -->
         </div> <!-- container -->
     </div> <!-- container fluid -->
 
-    @include('components.add_book_modal',['id' => isset($id) ? $id : ''])
+    @include('components.add_book_modal',['author' => isset($author) ? $author : ''])
 
     <!-- paginate links -->
     <div class="d-flex justify-content-center">
@@ -68,9 +70,10 @@
 
     <script>
         $('.js-edit').click(function (){
-
-         var data =    $('h5.js-card-title').text();
-         console.log(data);
+            $('.card').each(function() {
+                var card = $('#js-card-title').text();
+                console.log(card)
+            });
         });
     </script>
 @endsection
