@@ -3,17 +3,17 @@
     <div class="container-fluid">
         <div class="container h-100 pb-5">
             <!-- PAGE TITLE -->
-            <h2 class="text-center pt-4 text-muted">Books authors</h2>
+            <h2 class="text-center pt-4 text-muted">{{ __('data.books_author') }}</h2>
             <div class="row mt-5">
             @if(count($authors) > 0)
                 <!-- BUTTON ALL BOOKS -->
                     @include('standard.components.other_function')
                     <div class="col-12">
                         <a href="{{ url( '/')}}" class="btn btn-active text-center btn-outline-dark">
-                            Home
+                            {{ __('data.home') }}
                         </a>
                         <a href="{{ route( 'book.index')}}" class="btn btn-active text-center btn-outline-dark">
-                            All books
+                            {{ __('data.all_books') }}
                         </a>
                     </div>
                     <!-- All authors card -->
@@ -28,7 +28,7 @@
                                 <button type="button"
                                         id="js-edit-author"
                                         class="position-absolute ml-5  btn btn-sm btn-danger m-2">
-                                    edit
+                                    {{ __('data.edit') }}
                                 </button>
                                 <div class="user-img">
                                     <img src="{{ asset('img/avatar.png') }}" class="img-fluid" alt="avatar" width="">
@@ -37,7 +37,7 @@
                                 <h4 class="designation">Writer</h4>
                                 <div class="contact m-auto text-center p-2">
                                     <a href="{{ route( 'author.show', $author)}}"
-                                       class="btn btn-active w-75 btn-dark">Author books</a>
+                                       class="btn btn-active w-75 btn-dark">{{ __('data.books_author') }}</a>
                                 </div>
                                 <div class="profile-details">
                                     <ul>
@@ -47,18 +47,18 @@
                                             @endforeach
                                             <li>
                                                 <a><i class="fas fa-flag"></i>
-                                                    We register {{ count($author->book) }} books .
+                                                    {{ __('data.we_rigister') }} {{ count($author->book) }} {{ __('data.books') }} .
                                                 </a>
                                             </li>
                                             <li>
                                                 <a><i class="fas fa-flag"></i>
-                                                    Borrowed : {{ $author->book->where('is_borrowed',true)->count() }} books .
+                                                    {{ __('data.borrowed') }} : {{ $author->book->where('is_borrowed',true)->count() }} {{ __('data.books') }} .
                                                 </a>
                                             </li>
                                         @else
                                             <li><a><i class="fas fa-home"></i></a></li>
                                             <li><a><i class="fas fa-home"></i></a></li>
-                                            <li><a><i class="fas fa-flag"></i>Create book please ... </a></li>
+                                            <li><a><i class="fas fa-flag"></i>{{ __('data.create_books') }} </a></li>
                                         @endif
                                     </ul>
                                 </div>
@@ -69,8 +69,8 @@
                 <!-- message authors if not exist -->
                 @else
                     <div class="col-12 text-center">
-                        <h2>Not exist authors</h2>
-                        <a href="{{ url('seed') }}" class="btn btn-danger">Create seed test data</a>
+                        <h2>{{ __('data.not_authors') }}</h2>
+                        <a href="{{ url('seed') }}" class="btn btn-danger">{{ __('data.seed') }}</a>
                     </div>
             @endif
             <!-- add new authors card -->
@@ -79,11 +79,11 @@
                         <div class="user-img">
                             <img src="{{ asset('img/add.png') }}" class="img-fluid" alt="avatar" width="">
                         </div>
-                        <h3 class="user-name">Author</h3>
-                        <h4 class="designation">Add new</h4>
+                        <h3 class="user-name">{{ __('data.author') }}</h3>
+                        <h4 class="designation">{{ __('data.add_author') }}</h4>
                         <div class="contact m-auto text-center p-2">
                             <a class="btn btn-active w-75 btn-success" data-toggle="modal"
-                               data-target="#addAuthor">Create Author</a>
+                               data-target="#addAuthor">{{ __('data.create_author') }}</a>
                         </div>
                         <div class="profile-details">
                             <ul>

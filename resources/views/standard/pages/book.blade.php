@@ -3,8 +3,8 @@
     <div class="container-fluid">
         <div class="container mt-5">
             <!-- page title -->
-            <h2 class="text-muted text-center">Author Books</h2>
-            <a href="{{ route('author.index') }}" class="btn btm-sm btn-secondary"><- Back</a>
+            <h2 class="text-muted text-center">{{ __('data.author_books') }}</h2>
+            <a href="{{ route('author.index') }}" class="btn btm-sm btn-secondary"><- {{ __('data.back') }}</a>
 
             <div class="row">
                 <!-- all books card -->
@@ -17,7 +17,7 @@
                                         class="stuha @is_borrowed( $book->is_borrowed ) bg-dark-red @else  bg-black @endif">
                                         <small>
                                             {{ Str::limit($book->title,25) }} @is_borrowed( $book->is_borrowed ) - -
-                                            Borrowed @endif
+                                            {{ __('data.borrowed') }} @endif
                                         </small>
                                     </div>
                                     <h5 id="js-card-title" class=" card-title w-130px">{{ $book->title }}</h5>
@@ -31,9 +31,9 @@
                                     </div>
                                     <div class="position-absolute d-flex fixed-bottom p-3 mt-2">
                                         <button type="submit" class="btn btn-sm  btn-danger" data-toggle="modal"
-                                                data-target="#exampleModal">Remove
+                                                data-target="#exampleModal">{{ __('data.remove') }}
                                         </button>
-                                        <a href="#" class="btn btn-sm btn-dark ml-2 js-edit">Edit</a>
+                                        <a href="#" class="btn btn-sm btn-dark ml-2 js-edit">{{ __('data.edit') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                     @endforeach
                 @else
                     <div class="col-12">
-                        <h2 class="text-center">Not exist books</h2>
+                        <h2 class="text-center">{{ __('data.not_exist_book') }}</h2>
                     </div>
                 @endif
             <!-- add books card -->
@@ -50,11 +50,11 @@
                     <div class="my_card col-md-6 col-lg-4 mt-5 pb-5">
                         <div class="card m-auto  shadow-lg" style="width: 15rem;">
                             <div class="card-body">
-                                <h5 class="card-title w-130px">Add new book</h5>
+                                <h5 class="card-title w-130px">{{ __('data.add_new_book') }}</h5>
                                 <p class="card-text"></p>
                                 <div class="position-absolute fixed-bottom p-3">
                                     <a href="#" class="btn btn-success w-100" data-toggle="modal"
-                                       data-target="#bookCreate">Add new book</a>
+                                       data-target="#bookCreate">{{ __('data.add_book') }}</a>
                                 </div>
                             </div>
                         </div>
