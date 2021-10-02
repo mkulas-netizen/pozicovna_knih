@@ -1,8 +1,9 @@
 <?php
 
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ArtisanController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('seed',[HomeController::class,'seed']);
-Route::get('migrate',[HomeController::class,'migrate']);
+Route::get('seed',[ArtisanController::class,'seed']);
+Route::get('migrate',[ArtisanController::class,'migrate']);
+

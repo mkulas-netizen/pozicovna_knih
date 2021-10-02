@@ -21,7 +21,11 @@ Aplikácia prenájom kníh
                                     ] 
 
                         Seeder , 
-
+                        
+                        Predpríprava pre Auth systém stačí pridať Auth::routes();
+                        Skopírovanie do rrotu migration z folderu default
+                        php artisan make:model User --all
+                        
                         Vlastné atribúty v modeli ,
 
                         Automatická akcia pri inserte autora v modeli ,
@@ -42,7 +46,10 @@ Aplikácia prenájom kníh
                         Vlastný command,
                         
                         MultiLang
-                        
+        
+                        Validácia requestov ,
+                        Flash messages
+
                         Api verzia 1.0 ( v samostatnom controlleri ) 
                         Api verzia 2.0 ( v samostantom controlleri ) 
                         
