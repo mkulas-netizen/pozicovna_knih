@@ -9,8 +9,8 @@
                 <!-- all books card -->
                 @if(count($books) > 0)
                     @foreach($books as $book)
-                        <div class="col-md-6 col-lg-4 mt-5 pb-5">
-                            <div class="card m-auto  shadow-lg" style="width: 15rem;">
+                        <div class="my_card col-md-6 col-lg-4 mt-5 pb-5">
+                            <div class="my_card card  m-auto  shadow-lg" style="width: 15rem;">
                                 <div id="js-body" class="card-body">
                                     <div
                                         class="stuha @is_borrowed( $book->is_borrowed ) bg-dark-red @else  bg-black @endif">
@@ -45,7 +45,7 @@
                 @endif
             <!-- add books card -->
                 @isset($author)
-                <div class="col-md-6 col-lg-4 mt-5 pb-5">
+                <div class="my_card col-md-6 col-lg-4 mt-5 pb-5">
                     <div class="card m-auto  shadow-lg" style="width: 15rem;">
                         <div class="card-body">
                             <h5 class="card-title w-130px">Add new book</h5>

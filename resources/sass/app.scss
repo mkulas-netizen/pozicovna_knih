@@ -88,11 +88,11 @@
 
 }
 
-.card{
+.my_card .card{
     border-radius: 10px;
     background: none;
 }
-.card-body{
+.my_card .card-body{
     background-image: radial-gradient(circle at top right, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 70%);
     background-color: #333;
     color:white;

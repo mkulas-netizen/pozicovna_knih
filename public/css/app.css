@@ -10073,12 +10073,12 @@ h3 {
   margin-right: 8px;
 }
 
-.card {
+.my_card .card {
   border-radius: 10px;
   background: none;
 }
 
-.card-body {
+.my_card .card-body {
   background-image: radial-gradient(circle at top right, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 70%);
   background-color: #333;
   color: white;
@@ -10086,17 +10086,17 @@ h3 {
   height: 280px;
   box-shadow: 5px 5px 10px 5px black;
 }
-.card-body p {
+.my_card .card-body p {
   font-family: "Architects Daughter", cursive;
 }
-.card-body .stuha {
+.my_card .card-body .stuha {
   margin-top: -20px;
   position: absolute;
   right: 30px;
   width: 20px;
   height: 100%;
 }
-.card-body .stuha small {
+.my_card .card-body .stuha small {
   transform-origin: 0 0;
   position: absolute;
   width: 215px;
