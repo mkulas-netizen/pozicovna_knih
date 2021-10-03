@@ -62,8 +62,8 @@ class AuthorController extends Controller
         );
 
         return redirect()
-            ->with('flash_message', 'Author create!')
-            ->back();
+            ->back()
+            ->with('flash_message', 'Author create!');
 
     }
 
@@ -87,17 +87,27 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        return view('standard.pages.edit_author', [
-            'author' => $author
-        ]);
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Author $author)
+    public function update(Request $request, Author $author): RedirectResponse
     {
-        //
+
+        $request->validate(
+            [
+                'name' => 'string|max:255|min:2',
+                'surname' => 'string|max:255|min:2'
+            ]
+        );
+
+        $author->update($request->all());
+
+        return redirect()
+            ->back()
+            ->with('flash_message', 'Author edit!');
     }
 
     /**
@@ -108,7 +118,7 @@ class AuthorController extends Controller
         $author->delete();
 
         return redirect()
-            ->with('flash_message', 'Author deleted!')
-            ->back();
+            ->back()
+            ->with('flash_message', 'Author deleted!');
     }
 }

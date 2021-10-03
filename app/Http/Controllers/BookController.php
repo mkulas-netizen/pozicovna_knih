@@ -48,8 +48,8 @@ class BookController extends Controller
         );
 
         return redirect()
-            ->with('flash_message', 'Book create!')
-            ->back();
+            ->back()
+            ->with('flash_message', 'Book create!');
 
     }
 
@@ -88,7 +88,6 @@ class BookController extends Controller
                 ]
             );
 
-
             if ( $validator->fails() ) {
                 return back()
                     ->with('flash_error','Ups error !')
@@ -102,8 +101,8 @@ class BookController extends Controller
         }
 
         return redirect()
-            ->with('flash_message', 'Book update!')
-            ->back();
+            ->back()
+            ->with('flash_message', 'Book update!');
 
     }
 
@@ -128,8 +127,8 @@ class BookController extends Controller
         $book->delete();
 
         return redirect()
-            ->with('flash_message', 'Book deleted!')
-            ->back();
+            ->back()
+            ->with('flash_message', 'Book deleted!');
     }
 
 }

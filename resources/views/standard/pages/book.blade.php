@@ -25,21 +25,23 @@
                                     <p class="card-text"> {{ $book->authorFullName }}</p>
                                     <div class="position-absolute p-3 mb-5 w-75 fixed-bottom">
                                         @is_borrowed($book->is_borrowed)
-                                            @include('standard.components.borrowed_form_edit_status',['book' => $book,'btn_name' => 'Give back','value' => 'return'])
+                                            @include('standard.components.book.borrowed_form_edit_status',['book' => $book,'btn_name' =>  __('data.give_back') ,'value' => 'return'])
                                         @borrowed_else
-                                            @include('standard.components.borrowed_form_edit_status',['book' => $book,'btn_name' => 'Borrow','value' => 'borrowed'])
+                                            @include('standard.components.book.borrowed_form_edit_status',['book' => $book,'btn_name' => __('data.borrowed'),'value' => 'borrowed'])
                                         @borrowed_end
                                     </div>
                                     <div class="position-absolute d-flex fixed-bottom p-3 mt-2">
                                         <button type="submit" class="btn btn-sm  btn-danger" data-toggle="modal"
                                                 data-target="#exampleModal">{{ __('data.remove') }}
                                         </button>
-                                        <a href="#" class="btn btn-sm btn-dark ml-2 js-edit">{{ __('data.edit') }}</a>
+                                        <button type="button" class="btn btn-sm btn-dark ml-2 js-edit" data-toggle="modal"
+                                           data-target="#bookEdit{{ $book->id }}">{{ __('data.edit') }}</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        @include('standard.components.delete_book_modal',$book)
+                        @include('standard.components.book.edit_book_modal',$book)
+                        @include('standard.components.book.delete_book_modal',$book)
                     @endforeach
                 @else
                     <div class="col-12">
@@ -65,7 +67,7 @@
         </div> <!-- container -->
     </div> <!-- container fluid -->
 
-    @include('standard.components.add_book_modal',['author' => isset($author) ? $author : ''])
+    @include('standard.components.book.add_book_modal',['author' => isset($author) ? $author : ''])
 
     <!-- paginate links -->
     <div class="d-flex justify-content-center">

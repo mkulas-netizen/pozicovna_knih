@@ -22,18 +22,18 @@
                             <div class="div-box ">
                                 <button type="button" data-toggle="modal"
                                         data-target="#removeAuthor"
-                                        class="position-absolute btn btn-sm btn-danger m-2">
+                                        class="position-absolute btn btn-sm btn-outline-danger m-2">
                                     X
                                 </button>
-                                <a href="{{ route('author.edit',$author ) }}"
-                                        id="js-edit-author"
-                                        class="position-absolute ml-5  btn btn-sm btn-danger m-2">
+                                <a id="js-edit-author"
+                                   class="position-absolute ml-5  btn btn-sm btn-outline-info m-2" data-toggle="modal"
+                                   data-target="#editAuthor_{{ $author->id }}">
                                     {{ __('data.edit') }}
                                 </a>
                                 <div class="user-img">
                                     <img src="{{ asset('img/avatar.png') }}" class="img-fluid" alt="avatar" width="">
                                 </div>
-                                <h3 id="js-edit-text-author-" data-text="{{ $author->id }}" class="user-name">{{ $author->authorFullName }}</h3>
+                                <h3 id="js-edit-text-author" class="user-name">{{ $author->authorFullName }}</h3>
                                 <h4 class="designation">Writer</h4>
                                 <div class="contact m-auto text-center p-2">
                                     <a href="{{ route( 'author.show', $author)}}"
@@ -43,16 +43,21 @@
                                     <ul>
                                         @if(count($author->book) > 0)
                                             @foreach($author->book->take(1) as $book)
-                                                <li><a><i class="fas fa-home"></i>Example: {{ Str::limit($book->title,25) }}</a></li>
+                                                <li>
+                                                    <a><i class="fas fa-home"></i>
+                                                        Example: {{ Str::limit($book->title,25) }}
+                                                    </a>
+                                                </li>
                                             @endforeach
                                             <li>
                                                 <a><i class="fas fa-flag"></i>
-                                                    {{ __('data.we_register') }} {{ count($author->book) }} {{ __('data.books') }} .
+                                                    {{ __('data.we_register') }} {{ count($author->book) }} {{ __('data.books') }}.
                                                 </a>
                                             </li>
                                             <li>
                                                 <a><i class="fas fa-flag"></i>
-                                                    {{ __('data.borrowed') }} : {{ $author->book->where('is_borrowed',true)->count() }} {{ __('data.books') }} .
+                                                    {{ __('data.borrowed') }}
+                                                    : {{ $author->book->where('is_borrowed',true)->count() }} {{ __('data.books') }}.
                                                 </a>
                                             </li>
                                         @else
@@ -64,7 +69,8 @@
                                 </div>
                             </div>
                         </div>
-                        @include('standard.components.delete_author_modal',$author)
+                        @include('standard.components.author.edit_author_modal',[ 'author' => $author])
+                        @include('standard.components.author.delete_author_modal',$author)
                     @endforeach
                 <!-- message authors if not exist -->
                 @else
@@ -87,8 +93,16 @@
                         </div>
                         <div class="profile-details">
                             <ul>
-                                <li><a><i class="fas fa-flag"></i>{{  __('data.we_register') . ' ' .$books . ' '.  __('data.books') }}</a></li>
-                                <li><a><i class="fas fa-flag"></i>{{  __('data.borrowed') . ' ' . $book_count . ' ' . __('data.books') }}</a></li>
+                                <li>
+                                    <a><i class="fas fa-flag"></i>
+                                        {{  __('data.we_register') . ' ' .$books . ' '.  __('data.books') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a><i class="fas fa-flag"></i>
+                                        {{  __('data.borrowed') . ' ' . $book_count . ' ' . __('data.books') }}
+                                    </a>
+                                </li>
                                 <li><a><i class="fas fa-flag"></i>...</a></li>
                             </ul>
                         </div>
@@ -101,7 +115,5 @@
             </div>
         </div> <!-- end container -->
     </div> <!-- end container-fluid -->
-    @include('standard.components.create_author_modal')
-
-
+    @include('standard.components.author.create_author_modal')
 @endsection

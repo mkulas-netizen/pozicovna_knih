@@ -23,16 +23,15 @@ class Book extends Model
      * If is_borrowed auto null .
      * UNCOMMENT ( select all comment line and ctrl + / )
      */
-//    public static function boot()
-//    {
-//        parent::boot();
-//
-//        self::creating(function ($model) {
-//            $model->is_borrowed = false;
-//            return $model;
-//        });
-//
-//    }
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function ($model) {
+            $model->is_borrowed = false;
+            return $model;
+        });
+    }
 
     protected $appends = [
         'authorFullName'
