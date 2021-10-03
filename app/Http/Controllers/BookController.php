@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -14,7 +14,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('standard.pages.book', ['books' => Book::paginate(6)]);
+        return view('standard.pages.book', [
+            'books' => Book::paginate(6)
+        ]);
     }
 
 
@@ -24,9 +26,12 @@ class BookController extends Controller
     public function store(Request $request): RedirectResponse
     {
 
-        $validator = Validator::make($request->all(),[
-            'title' => 'required|min:2|max:255|unique:books'
-        ]);
+        $validator = Validator::make(
+            $request->all(),
+                [
+                    'title' => 'required|min:2|max:255|unique:books'
+                ]
+            );
 
         if ( $validator->fails() ) {
             return back()
@@ -35,15 +40,18 @@ class BookController extends Controller
                 ->withInput();
         }
 
-        Book::create([
-           'title' => $request->title,
-           'author_id' => $request->author
-        ]);
+        Book::create(
+            [
+                'title' => $request->title,
+                'author_id' => $request->author
+            ]
+        );
 
-        return redirect()->back()->with('flash_message', 'Book create!');
+        return redirect()
+            ->with('flash_message', 'Book create!')
+            ->back();
 
     }
-
 
 
     /**
@@ -52,7 +60,8 @@ class BookController extends Controller
     public function update(Request $request, Book $book): RedirectResponse
     {
 
-        if ($request->borrowed == 'return') {
+        if ( $request->borrowed == 'return' ) {
+
             $book->update([
                 'is_borrowed' => false
             ]);
@@ -61,20 +70,24 @@ class BookController extends Controller
         }
 
 
-        if ($request->borrowed == 'borrowed'){
+        if ( $request->borrowed == 'borrowed' ) {
+
             $book->update([
-               'is_borrowed' => true
+                'is_borrowed' => true
             ]);
 
             return redirect()->back();
         }
 
 
-        if ($request->title){
+        if ($request->title) {
 
-            $validator = Validator::make($request->all(),[
-                'title' => 'required|min:2|max:255|unique:books'
-            ]);
+            $validator = Validator::make(
+                $request->all() , [
+                    'title' => 'required|min:2|max:255|unique:books'
+                ]
+            );
+
 
             if ( $validator->fails() ) {
                 return back()
@@ -84,13 +97,25 @@ class BookController extends Controller
             }
 
             $book->update([
-               'title' => $request->title
+                'title' => $request->title
             ]);
-
         }
 
-        return redirect()->back()->with('flash_message', 'Book update!');
+        return redirect()
+            ->with('flash_message', 'Book update!')
+            ->back();
 
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Book $book)
+    {
+        return view('standard.pages.edit_book', [
+            'book' => $book
+        ]);
     }
 
 
@@ -101,7 +126,10 @@ class BookController extends Controller
     public function destroy(Book $book): RedirectResponse
     {
         $book->delete();
-        return redirect()->back()->with('flash_message', 'Book deleted!');
+
+        return redirect()
+            ->with('flash_message', 'Book deleted!')
+            ->back();
     }
 
 }

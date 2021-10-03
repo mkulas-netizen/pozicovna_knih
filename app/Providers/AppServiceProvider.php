@@ -25,8 +25,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         Blade::directive('is_borrowed', function ($book){
             return "<?php if($book == true  ) : ?>";
+        });
+
+        Blade::directive('borrowed_else',function (){
+            return "<?php else : ?>";
+        });
+
+        Blade::directive('borrowed_end', function() {
+            return "<?php endif; ?>";
         });
 
         Paginator::useBootstrap();

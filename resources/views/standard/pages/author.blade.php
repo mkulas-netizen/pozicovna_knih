@@ -25,11 +25,11 @@
                                         class="position-absolute btn btn-sm btn-danger m-2">
                                     X
                                 </button>
-                                <button type="button"
+                                <a href="{{ route('author.edit',$author ) }}"
                                         id="js-edit-author"
                                         class="position-absolute ml-5  btn btn-sm btn-danger m-2">
                                     {{ __('data.edit') }}
-                                </button>
+                                </a>
                                 <div class="user-img">
                                     <img src="{{ asset('img/avatar.png') }}" class="img-fluid" alt="avatar" width="">
                                 </div>

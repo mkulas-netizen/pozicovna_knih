@@ -5,7 +5,6 @@
             <!-- page title -->
             <h2 class="text-muted text-center">{{ __('data.author_books') }}</h2>
             <a href="{{ route('author.index') }}" class="btn btm-sm btn-secondary"><- {{ __('data.back') }}</a>
-
             <div class="row">
                 <!-- all books card -->
                 @if(count($books) > 0)
@@ -14,20 +13,22 @@
                             <div class="my_card card  m-auto  shadow-lg" style="width: 15rem;">
                                 <div id="js-body" class="card-body">
                                     <div
-                                        class="stuha @is_borrowed( $book->is_borrowed ) bg-dark-red @else  bg-black @endif">
+                                        class="stuha @is_borrowed( $book->is_borrowed ) bg-dark-red @borrowed_else  bg-black @borrowed_end">
                                         <small>
-                                            {{ Str::limit($book->title,25) }} @is_borrowed( $book->is_borrowed ) - -
-                                            {{ __('data.borrowed') }} @endif
+                                            {{ Str::limit($book->title,25) }}
+                                            @is_borrowed( $book->is_borrowed ) - -
+                                                {{ __('data.borrowed') }}
+                                            @borrowed_end
                                         </small>
                                     </div>
                                     <h5 id="js-card-title" class=" card-title w-130px">{{ $book->title }}</h5>
                                     <p class="card-text"> {{ $book->authorFullName }}</p>
                                     <div class="position-absolute p-3 mb-5 w-75 fixed-bottom">
                                         @is_borrowed($book->is_borrowed)
-                                        @include('standard.components.borrowed_form_edit_status',['book' => $book,'btn_name' => 'Give back','value' => 'return'])
-                                        @else
+                                            @include('standard.components.borrowed_form_edit_status',['book' => $book,'btn_name' => 'Give back','value' => 'return'])
+                                        @borrowed_else
                                             @include('standard.components.borrowed_form_edit_status',['book' => $book,'btn_name' => 'Borrow','value' => 'borrowed'])
-                                        @endif
+                                        @borrowed_end
                                     </div>
                                     <div class="position-absolute d-flex fixed-bottom p-3 mt-2">
                                         <button type="submit" class="btn btn-sm  btn-danger" data-toggle="modal"

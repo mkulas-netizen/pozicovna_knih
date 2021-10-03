@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use App\Models\Author;
 use App\Models\Book;
-use Illuminate\Http\Request;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 
 
 class AuthorController extends Controller
@@ -18,11 +18,15 @@ class AuthorController extends Controller
     public function index(): View
     {
         $book = Book::all();
+
         return view('standard.pages.author',
             [
-                'authors' => Author::with('book')->paginate(5)->onEachSide(5),
+                'authors' => Author::with('book')
+                    ->paginate(5),
+
                 'books' =>  $book->count(),
-                'book_count' => $book->where('is_borrowed',1)->count()
+                'book_count' => $book->where('is_borrowed',1)
+                    ->count()
             ]
         );
     }
@@ -38,22 +42,28 @@ class AuthorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-           'name' => 'required|string|max:255|min:2',
-           'surname' => 'required|string|max:255|min:2'
-        ]);
+        $request->validate(
+            [
+                'name' => 'required|string|max:255|min:2',
+                'surname' => 'required|string|max:255|min:2'
+            ]
+        );
 
         /**
          * V tomto prípade ani vlastne v žiadnom inom nepoužívam pre insert $request->all()
          */
-        Author::create([
-            'name' => $request->name,
-            'surname' => $request->surname
-        ]);
+        Author::create(
+            [
+                'name' => $request->name,
+                'surname' => $request->surname
+            ]
+        );
 
-        return redirect()->back()->with('flash_message', 'Author create!');
+        return redirect()
+            ->with('flash_message', 'Author create!')
+            ->back();
 
     }
 
@@ -62,8 +72,14 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        $books = Book::where('author_id',$author->id)->paginate(5);
-        return view('standard.pages.book', compact('books'),['author' => $author->id ]);
+        $books = Book::where('author_id',$author->id)
+            ->paginate(5);
+
+        return view('standard.pages.book',
+            compact('books'), [
+                'author' => $author->id
+            ]
+        );
     }
 
     /**
@@ -71,7 +87,9 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        //
+        return view('standard.pages.edit_author', [
+            'author' => $author
+        ]);
     }
 
     /**
@@ -88,6 +106,9 @@ class AuthorController extends Controller
     public function destroy(Author $author): RedirectResponse
     {
         $author->delete();
-        return redirect()->back()->with('flash_message', 'Author deleted!');
+
+        return redirect()
+            ->with('flash_message', 'Author deleted!')
+            ->back();
     }
 }

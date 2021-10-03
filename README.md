@@ -15,12 +15,9 @@ Aplikácia prenájom kníh
                         ]
 
         Funkcie -> [
-                        Migrácie => [ 
-                                      cudzí kľúč , 
-                                      cascade delete 
-                                    ] 
-
-                        Seeder , 
+                        DB => migracie  -> cascade -> foregin 
+                        Seeders 
+                        factories
                         
                         Predpríprava pre Auth systém stačí pridať Auth::routes();
                         Skopírovanie do rrotu migration z folderu default

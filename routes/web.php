@@ -19,10 +19,6 @@ Route::get('/',function (){
    return view('standard.pages.home');
 });
 
-Route::resource('author',AuthorController::class)
-    ->except([ 'edit' , 'create' , 'update' ]);
-
-
-Route::resource('book',  BookController::class)
-    ->except([ 'edit' , 'create' ]);
+Route::resource('author',AuthorController::class);
+Route::resource('book',  BookController::class);
 
