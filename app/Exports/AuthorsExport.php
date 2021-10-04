@@ -12,6 +12,6 @@ class AuthorsExport implements FromCollection
     */
     public function collection()
     {
-        return Author::all();
+        return Author::get();
     }
 }

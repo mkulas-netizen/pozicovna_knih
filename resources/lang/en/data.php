@@ -47,6 +47,8 @@ return [
     'book_update' => 'Edit',
     'edit_author' => 'Edit author',
     'give_back' => 'Give back',
+    'example' => 'Example',
+    'writer' => 'Writer'
 ];
 
 

@@ -34,7 +34,7 @@
                                     <img src="{{ asset('img/avatar.png') }}" class="img-fluid" alt="avatar" width="">
                                 </div>
                                 <h3 id="js-edit-text-author" class="user-name">{{ $author->authorFullName }}</h3>
-                                <h4 class="designation">Writer</h4>
+                                <h4 class="designation">{{ __('data.writer') }}</h4>
                                 <div class="contact m-auto text-center p-2">
                                     <a href="{{ route( 'author.show', $author)}}"
                                        class="btn btn-active w-75 btn-dark">{{ __('data.books_author') }}</a>
@@ -45,7 +45,7 @@
                                             @foreach($author->book->take(1) as $book)
                                                 <li>
                                                     <a><i class="fas fa-home"></i>
-                                                        Example: {{ Str::limit($book->title,25) }}
+                                                        {{ __('data.example') }}: {{ Str::limit($book->title,25) }}
                                                     </a>
                                                 </li>
                                             @endforeach

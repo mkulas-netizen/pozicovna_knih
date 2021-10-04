@@ -14,8 +14,8 @@
                 @method('PUT')
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="name" class="form-label mr-4">{{ __('data.name') }}:</label>
-                        <input type="text" name="name" id="name" class="@error('name') is-invalid @enderror"
+                        <label for="name">{{ __('data.name') }}:</label>
+                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
                                value="{{ $author->name }}"
                                required>
                         @error('name')
@@ -25,9 +25,9 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="surname" class="form-label mr-1">{{ __('data.surname') }}:</label>
+                        <label for="surname">{{ __('data.surname') }}:</label>
                         <input type="text" name="surname" id="surname" value="{{ $author->surname }}"
-                               class="@error('surname') is-invalid @enderror" required>
+                               class="form-control @error('surname') is-invalid @enderror" required>
 
                         @error('surname')
                         <span class="invalid-feedback" role="alert">
