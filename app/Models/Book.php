@@ -38,7 +38,7 @@ class Book extends Model
     ];
 
 
-    protected array $fillable = [
+    protected  $fillable = [
         'title','is_borrowed','author_id'
     ];
 

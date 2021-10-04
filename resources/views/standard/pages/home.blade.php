@@ -22,7 +22,7 @@
                             <h5 class="card-title text-center">{{ __('data.vue') }}</h5>
                             <p class="card-text text-center">{{ __('data.vue_message') }}</p>
                             <div class="text-center">
-                                <a href="#" class="btn btn-primary">{{ __('data.go') }}</a>
+                                <a href="{{ route('vue') }}" class="btn btn-primary">{{ __('data.go') }}</a>
                             </div>
                         </div>
                     </div>

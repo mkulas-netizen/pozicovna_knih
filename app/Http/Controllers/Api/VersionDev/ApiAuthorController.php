@@ -20,7 +20,7 @@ class ApiAuthorController extends Controller
             ->get();
 
         return response()->json([
-            'author' => $this->returnAuthors($author)
+            'authors' => $this->returnAuthors($author)
         ]);
     }
 
