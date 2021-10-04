@@ -56,6 +56,7 @@ class ApiAuthorController extends Controller
 
     }
 
+
     /**
      * Display the specified resource.
      */
@@ -82,7 +83,6 @@ class ApiAuthorController extends Controller
             ]
         );
 
-
         $data = $author->update([
             'name' => $request->name,
             'surname' => $request->surname
@@ -96,6 +96,7 @@ class ApiAuthorController extends Controller
         ]);
     }
 
+
     /**
      * Remove the specified resource from storage.
      */
@@ -107,7 +108,6 @@ class ApiAuthorController extends Controller
            'message' => 'The author and his books are erased !'
         ]);
     }
-
 
 
     private function returnAuthors($data){
@@ -132,6 +132,7 @@ class ApiAuthorController extends Controller
             ];
         })->toArray();
     }
+
 
     private function returnAuthor($author,$book): object
     {

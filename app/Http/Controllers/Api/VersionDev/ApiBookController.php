@@ -2,28 +2,30 @@
 
 namespace App\Http\Controllers\Api\VersionDev;
 
-use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Book;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
 
 class ApiBookController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         $book = Book::all();
-        $data = $this->returnBook($book);
-        return response()->json(['book' => $data]);
+        return response()->json([
+            'book' => $this->returnBooks($book)
+        ]);
     }
 
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
 
         $validator = Validator::make(
@@ -35,7 +37,7 @@ class ApiBookController extends Controller
 
         if ( $validator->fails() ) {
             return response()
-                ->with('flash_error','Ups error !')
+                ->json(['message' => 'Ups error !' ])
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -47,7 +49,7 @@ class ApiBookController extends Controller
             ]
         );
 
-        $data = $this->returnBook($book);
+        $data = $this->returnBooks($book);
 
         return response()->json(['message' => 'Create book success', 'book' => $data]);
     }
@@ -56,26 +58,32 @@ class ApiBookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, Book $book): JsonResponse
     {
 
         if ( $request->borrowed == 'return' ) {
 
-            $book->update([
+            $data = $book->update([
                 'is_borrowed' => false
             ]);
 
-            return response()->json(['message' => 'Borrowed status update !']);
+            return response()->json([
+                'message' => 'Borrowed status update !',
+                'book' => $this->returnBook($data)
+            ]);
         }
 
 
         if ( $request->borrowed == 'borrowed' ) {
 
-            $book->update([
+            $data = $book->update([
                 'is_borrowed' => true
             ]);
 
-            return response()->json(['message' => 'Borrowed status update !']);
+            return response()->json([
+                'message' => 'Borrowed status update !',
+                'book' => $this->returnBook($data)
+            ]);
 
         }
 
@@ -89,8 +97,8 @@ class ApiBookController extends Controller
             );
 
             if ( $validator->fails() ) {
-                return back()
-                    ->with('flash_error','Ups error !')
+                return response()
+                    ->json(['message','Ups error !'])
                     ->withErrors($validator)
                     ->withInput();
             }
@@ -101,19 +109,23 @@ class ApiBookController extends Controller
         }
 
 
-        return response()->json(['book' => $data,'message' => 'Book update !']);
+        return response()->json([
+            'book' => $this->returnBook($data),
+            'message' => 'Book update !'
+        ]);
     }
 
 
-    public function destroy(Book $book)
+    public function destroy(Book $book): JsonResponse
     {
         $book->delete();
         return response()->json(['message' => 'Book deleted !']);
     }
 
 
-    private function returnBook($data){
-        return  $data->map(function($tag){
+    private function returnBooks($data)
+    {
+        return $data->map(function ($tag) {
             return [
                 'id' => $tag->id,
                 'title' => $tag->title,
@@ -122,5 +134,17 @@ class ApiBookController extends Controller
                 'author_id' => $tag->author_id
             ];
         })->toArray();
+    }
+
+    private function returnBook($data): object
+    {
+        return (object)[
+            'id' => $data->id,
+            'title' => $data->title,
+            'created_at' => $data->created_at,
+            'updated_at' => $data->updated_at,
+            'author_id' => $data->author_id
+        ];
+
     }
 }

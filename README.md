@@ -47,8 +47,8 @@ Aplikácia prenájom kníh
                         Validácia requestov ,
                         Flash messages
 
-                        Api verzia 1.0 ( v samostatnom controlleri ) 
-                        Api verzia 2.0 ( v samostantom controlleri ) 
+                        Api verzia 1.0 ( v samostatnom controlleri 
+                        + kontrola odosielaných dát ) 
                         
                         Vlastný route file,
                         Controla existencie záznamov
