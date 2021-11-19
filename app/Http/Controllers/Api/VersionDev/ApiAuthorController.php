@@ -11,23 +11,19 @@ use App\Models\Book;
 
 class ApiAuthorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private string $authorId = 'author_id';
+
+
     public function index(): JsonResponse
     {
-        $author = Author::with('book')
-            ->get();
-
         return response()->json([
-            'authors' => $this->returnAuthors($author)
+            'authors' => $this->returnAuthors(
+                Author::with('book')->get()
+            )
         ]);
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request): JsonResponse
     {
         $request->validate(
@@ -37,9 +33,6 @@ class ApiAuthorController extends Controller
             ]
         );
 
-        /**
-         * V tomto prípade ani vlastne v žiadnom inom nepoužívam pre insert $request->all()
-         */
         $author = Author::create(
             [
                 'name' => $request->name,
@@ -50,29 +43,23 @@ class ApiAuthorController extends Controller
         return response()->json([
             'message' => 'Author created !',
             'author' => $this->returnAuthor($author,
-                Book::where('author_id' ,$author->id)->get()
+                Book::where($this->authorId ,$author->id)->get()
             )
         ]);
 
     }
 
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Author $author): JsonResponse
     {
         return response()->json([
             'author' => $this->returnAuthor($author,
-                Book::where('author_id' ,$author->id)->get()
+                Book::where($this->authorId ,$author->id)->get()
             ),
         ]);
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Author $author): JsonResponse
     {
 
@@ -91,15 +78,12 @@ class ApiAuthorController extends Controller
         return response()->json([
             'message' => 'Author is edited !',
             'author' => $this->returnAuthor($data,
-                Book::where('author_id' ,$author->id)->get()
+                Book::where($this->authorId ,$author->id)->get()
             )
         ]);
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Author $author): JsonResponse
     {
         $author->delete();
@@ -111,7 +95,9 @@ class ApiAuthorController extends Controller
 
 
     private function returnAuthors($data){
+
         return  $data->map(function($tag){
+
             return [
                 'id' => $tag->id,
                 'name' => $tag->name,
@@ -131,6 +117,7 @@ class ApiAuthorController extends Controller
                 })
             ];
         })->toArray();
+
     }
 
 
@@ -153,4 +140,6 @@ class ApiAuthorController extends Controller
             })
         ];
     }
+
+
 }

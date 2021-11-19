@@ -43,7 +43,8 @@ class BookController extends Controller
         Book::create(
             [
                 'title' => $request->title,
-                'author_id' => $request->author
+                'author_id' => $request->author,
+                'is_borrowed' => false
             ]
         );
 

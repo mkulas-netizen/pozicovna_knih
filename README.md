@@ -1,68 +1,30 @@
-Aplikácia prenájom kníh
+Spustenie projektu : 
 
-        Evidencia autorov a ich kníh 
-        Evidencia prenajatých kníh
-        Zobrazenie -> Autorov 
-                        [ 
-                            meno a priezvisko ,
-                            počet celkových kníh 
-                            počet prenajatých kníh
-                        ];
-                   -> Knihy 
-                        [
-                            Všetky knihy , 
-                            Knihy daného autora,
-                        ]
+    git clone https://github.com/mkulas-netizen/pozicovna_knih.git
+    cd pozicovna_knih
+    cp .env.example .env    
+    create database 
+    in .env connect db 
+    composer install
+    npm install
+    npm run dev 
+    php artisan serve 
 
-        Funkcie -> [
-                        DB => migracie  -> cascade -> foregin 
-                        Seeders 
-                        factories
-                        
-                        Predpríprava pre Auth systém stačí pridať Auth::routes();
-                        Skopírovanie do rrotu migration z folderu default
-                        php artisan make:model User --all
-                        
-                        Vlastné atribúty v modeli ,
+    Netreba spúšťať databazovú migráciu všetko je nachystané ..
 
-                        Automatická akcia pri inserte autora v modeli ,
-                        Vlastná kontrola pre blade v AppServiceProvider [
-                            kontroluje prenájom knihy ],
-
-                        Button na automatický seed ( 
-                            akcia artisan commandu z fronendu
-                        ),
-
-                        Kontrola existencie tabuliek (
-                            Vhodné pre aplikácie kde je potrebný záznam 
-                            z db už pri bootovaní aplikácie . 
-                        ),
-                        
-                        CRUD akcie ,
-
-                        Vlastný command,
-                        
-                        MultiLang
-        
-                        Validácia requestov ,
-                        Flash messages
-
-                        Api verzia 1.0 ( v samostatnom controlleri 
-                        + kontrola odosielaných dát ) 
-                        
-                        Vlastný route file,
-                        Controla existencie záznamov
-                    ],
-
-                             
-        FronEnd ->  Štandard => [
-                        Scss , Bootstrap4 
-                        Paginácia v bootstrap štýle ( AppServiceProvider ) ,
-                        Preposielanie dát pre include ,
-                        Limit paginacnych buttonov pre moilnu verziu
-                    ]
-                    
-                    Vue => [
-                            
-                            ]
+Obsah projektu 
+    
+    migracie , factories , seeders 
+    crud 
+    artisan komandy spušťané z fronendu . 
+    vlastné requesty pre validáciu autora 
+    validácia v controlery . 
+    databázové modely a vstahy medzi modelami . 
+    vlastný artibut pre autora
+    observer akcia pre model book 
+    vlastný config pre language a middleware
+    multijazyčnosť . 
+    AppServiceProvider - nastavenia vlastných blade skratiek . 
+    Vlastné rout subory pre oddelenie . 
+    
     

@@ -29,6 +29,5 @@ class ArtisanController extends Controller
         Schema::dropIfExists('migrations');
 
         return redirect()->back();
-
     }
 }
