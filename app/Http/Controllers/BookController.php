@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\Client\Auth\ResendAccountActivationMail;
+use App\Listeners\SendBookActionMail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use Illuminate\Foundation\Bus\Dispatchable;
+
 
 class BookController extends Controller
 {
@@ -40,13 +44,14 @@ class BookController extends Controller
                 ->withInput();
         }
 
-        Book::create(
+        $book =  Book::create(
             [
                 'title' => $request->title,
                 'author_id' => $request->author,
                 'is_borrowed' => false
             ]
         );
+
 
         return redirect()
             ->back()
